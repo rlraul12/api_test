@@ -1,21 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 const API_URL = "https://whenisthenextmcufilm.com/api";
 
 // inicializa la peticion
-$ch = curl_init(API_URL);
+//$ch = curl_init(API_URL);
 
 // indica que devuelva pero que no muestre en pantalla
-curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+//curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 
 // ejecutar y guardar la peticion
-$resultado = curl_exec($ch);
-
-$data = json_decode($resultado, true);
-
-curl_close($ch);
+//$resultado = curl_exec($ch);
 
 
+
+//curl_close($ch);
+
+
+function get_data(string $url): array
+{   
+    $resultado = file_get_contents($url);
+    $data = json_decode($resultado, true);
+    return $data;
+}
+
+get_data(API_URL);
 
 ?>
 
