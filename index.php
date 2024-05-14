@@ -25,7 +25,7 @@ function get_data(string $url): array
     return $data;
 }
 
-$data = get_data(API_URL);
+
 
 function get_until_message(int $days): string
 {
@@ -39,7 +39,7 @@ function get_until_message(int $days): string
 }
 
 
-
+$data = get_data(API_URL);
 $untilMessage = get_until_message($data["days_until"]);
 
 ?>
