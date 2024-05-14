@@ -25,7 +25,22 @@ function get_data(string $url): array
     return $data;
 }
 
-get_data(API_URL);
+$data = get_data(API_URL);
+
+function get_until_message(int $days): string
+{
+    return match (true) {
+        $days == 0  => "Hoy se estrena",
+        $days == 2  => "Faltan dos dias para el estreno, preparaos!!!!!",
+        $days < 7   => "Esta semana va el estreno",
+        $days < 30  => "Este mes se estrenara",
+        default     => "Tardara en estrenarse $days dias",
+    };
+}
+
+
+
+$untilMessage = get_until_message($data["days_until"]);
 
 ?>
 
@@ -44,7 +59,7 @@ get_data(API_URL);
     </section>
 
     <hgroup>
-        <h3><?= $data["title"] ?>  se estrena <?= $data["days_until"] ?> dias</h3>
+        <h3><?= $data["title"] ?>  <br> <?= $untilMessage ?></h3>
         <p>Fecha de estreno <?= $data["release_date"] ?></p>
         <p>La siguiente es <?= $data["following_production"]["title"] ?> </p>
     </hgroup>
